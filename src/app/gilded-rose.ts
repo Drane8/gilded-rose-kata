@@ -31,7 +31,9 @@ export class GildedRose {
         if (item.sellIn < RECOMMENDED_SELLIN_DATE) {
           item.quality = item.quality + 1;
         }
-        if (item.quality > MAX_QUALITY) item.quality = MAX_QUALITY;
+        if (item.quality > MAX_QUALITY) {
+          item.quality = MAX_QUALITY;
+        }
         return;
       }
 
@@ -43,18 +45,22 @@ export class GildedRose {
         if (item.sellIn < BACKSTAGE_TRIPLE_PRICE_DATE) {
           item.quality = item.quality + 1;
         }
-        if (item.quality > MAX_QUALITY) item.quality = MAX_QUALITY;
+        if (item.quality > MAX_QUALITY) {
+          item.quality = MAX_QUALITY;
+        }
         if (item.sellIn < RECOMMENDED_SELLIN_DATE) {
-          item.quality = item.quality - item.quality;
+          item.quality = MIN_QUALITY;
         }
         return;
       }
 
-        item.quality = item.quality - 1;
+      item.quality = item.quality - 1;
       if (item.sellIn < RECOMMENDED_SELLIN_DATE) {
-          item.quality = item.quality - 1;
+        item.quality = item.quality - 1;
       }
-      if (item.quality < MIN_QUALITY) item.quality = MIN_QUALITY;
+      if (item.quality < MIN_QUALITY) {
+        item.quality = MIN_QUALITY;
+      }
     });
     return this.items;
   }
