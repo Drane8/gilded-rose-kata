@@ -25,11 +25,11 @@ export class GildedRose {
       if (item.name === SULFURAS) {
         return;
       }
+      item.sellIn = item.sellIn - 1;
       if (item.name === BRIE) {
         if (item.quality < MAX_QUALITY) {
           item.quality = item.quality + 1;
         }
-        item.sellIn = item.sellIn - 1;
         if (
           item.quality < MAX_QUALITY &&
           item.sellIn < RECOMMENDED_SELLIN_DATE
@@ -53,16 +53,14 @@ export class GildedRose {
             }
           }
         }
-        item.sellIn = item.sellIn - 1;
         if (item.sellIn < RECOMMENDED_SELLIN_DATE) {
           item.quality = item.quality - item.quality;
         }
         return;
-      } else if (item.quality > MIN_QUALITY) {
+      }
+      if (item.quality > MIN_QUALITY) {
         item.quality = item.quality - 1;
       }
-
-      item.sellIn = item.sellIn - 1;
       if (item.sellIn < RECOMMENDED_SELLIN_DATE) {
         if (item.quality > MIN_QUALITY) {
           item.quality = item.quality - 1;
